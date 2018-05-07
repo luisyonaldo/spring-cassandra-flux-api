@@ -1,8 +1,6 @@
 package nl.zwennesm.repository;
 
 import nl.zwennesm.model.User;
-import reactor.core.publisher.Mono;
+import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 
-public interface UserRepository {
-    Mono<User> findOne(String id);
-}
+interface UserRepository extends ReactiveCrudRepository<User, String> {}

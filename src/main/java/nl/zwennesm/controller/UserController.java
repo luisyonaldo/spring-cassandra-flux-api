@@ -1,6 +1,7 @@
 package nl.zwennesm.controller;
 
-import nl.zwennesm.service.UserService;
+import nl.zwennesm.RecommendationException;
+import nl.zwennesm.repository.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,19 +19,19 @@ import static org.springframework.web.reactive.function.BodyInserters.fromObject
 @RequestMapping("/recommend/user")
 public class UserController {
 
-    private final UserService userService;
+    private final UserService service;
 
     @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
+    public UserController(UserService service) {
+        this.service = service;
     }
 
     @GetMapping(path = "/{id}")
     public Mono<ServerResponse> get(@PathVariable("id") String id) {
         return ServerResponse.ok()
                 .contentType(APPLICATION_JSON)
-                .body(fromObject(this.userService.findOne(id)))
-                .onErrorResume(UserNotFoundException.class, e -> ServerResponse.notFound().build());
+                .body(fromObject(service.findById(id)))
+                .onErrorResume(RecommendationException.class, e -> ServerResponse.notFound().build());
     }
 
     @GetMapping("/test")

@@ -6,7 +6,6 @@ import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
 
 import java.util.List;
-import java.util.Map;
 
 @Table("Product")
 public class Product {
@@ -21,22 +20,6 @@ public class Product {
     public Product(@JsonProperty("sku") String sku, @JsonProperty("recommendations") List<Long> recs) {
         this.sku = sku;
         this.recommendations = recs;
-    }
-
-    public String getSku() {
-        return sku;
-    }
-
-    public void setSku(String sku) {
-        this.sku = sku;
-    }
-
-    public List<Long> getRecommendations() {
-        return recommendations;
-    }
-
-    public void setRecommendations(List<Long> recommendations) {
-        this.recommendations = recommendations;
     }
 
     @Override

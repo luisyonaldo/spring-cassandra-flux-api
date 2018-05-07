@@ -20,22 +20,6 @@ public class User {
         this.trigger = trigger;
     }
 
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getTrigger() {
-        return trigger;
-    }
-
-    public void setTrigger(String trigger) {
-        this.trigger = trigger;
-    }
-
     @Override
     public String toString() {
         return String.format("UserProfile[userId=%s, trigger=%s]", this.userId, this.trigger);
